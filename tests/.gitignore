@@ -1,0 +1,4 @@
+# Ignore all files in this folder other than .gitignore
+# We don't want generated tests in our git history
+*
+!.gitignore
