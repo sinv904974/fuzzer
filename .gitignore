@@ -1,0 +1,27 @@
+# ignore everything not whitelisted
+*
+
+# whitelist dot files
+!.gitignore
+!.gitlab-ci.yml
+
+# whitelist helper scripts
+!build.sh
+!eng_unimelb_setup
+!get_coverage.sh
+!Makefile
+!README.md
+!run_fuzzer.sh
+!run_tests.sh
+
+#whitelist folders
+!fuzzer/
+!poc/
+!src/
+
+# ignore all compiled Java files in the whitelisted folders
+**/*.class
+
+# ignore all compiled C files in the whitelisted folders
+**/*.o
+**/*.a

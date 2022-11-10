@@ -1,0 +1,56 @@
+stages:
+    - check_elig
+    - compile
+    - validate_tests
+    - validate_progs
+    - submit
+
+check_submitter_eligibility:
+    stage: check_elig
+    only:
+        - master
+    tags:
+        - "swen90006-tourney"
+    script:
+        - python3.8 ~/swen_tourney/frontend.py check_eligibility ${CI_PROJECT_NAMESPACE} ${CI_PROJECT_NAME} ${CI_PROJECT_DIR}
+    allow_failure: false
+
+compile:
+    stage: compile
+    only:
+        - master
+    tags:
+        - "swen90006-tourney"
+    script:
+        - python3.8 ~/swen_tourney/frontend.py compile ${CI_PROJECT_NAMESPACE}
+    allow_failure: false
+
+validate_tests:
+    stage: validate_tests
+    only:
+        - master
+    tags:
+        - "swen90006-tourney"
+    script:
+        - python3.8 ~/swen_tourney/frontend.py validate_tests ${CI_PROJECT_NAMESPACE}
+    allow_failure: false
+
+validate_progs:
+    stage: validate_progs
+    only:
+        - master
+    tags:
+        - "swen90006-tourney"
+    script:
+        - python3.8 ~/swen_tourney/frontend.py validate_progs ${CI_PROJECT_NAMESPACE}
+    allow_failure: false
+
+submit:
+    stage: submit
+    only:
+        - master
+    tags:
+        - "swen90006-tourney"
+    script:
+        - python3.8 ~/swen_tourney/frontend.py submit ${CI_PROJECT_NAMESPACE}
+    allow_failure: false
